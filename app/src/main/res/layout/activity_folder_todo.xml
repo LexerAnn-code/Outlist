@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="folderAdapter"
+            type="com.ankit.mvvmtodo.FolderRecyclerView" />
+
+        <variable
+            name="folderViewModel"
+            type="com.ankit.mvvmtodo.TodoViewModel" />
+        <variable
+            name="folder"
+            type="com.ankit.mvvmtodo.TodoFolder" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        tools:context=".FolderTodoActivity">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/folder_appBar_home"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="top"
+            style="@style/AppThemes"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:backgroundTint="#FFFFFF"
+            android:fitsSystemWindows="true">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/folder_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways"
+               >
+
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/folder_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/BottomNavHome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/folder_appBar_home"
+            app:setAdapter="@{folderAdapter}"></androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/folderNameMoreOptions"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+               app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+android:visibility="gone"
+
+            android:backgroundTint="@color/design_default_color_surface"
+
+
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/folder1"
+                android:layout_width="300dp"
+                android:layout_height="260dp"
+                app:cardUseCompatPadding="true"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:backgroundTint="#ffffff"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                   <ImageView
+                       android:id="@+id/folder_option_img"
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/ic_folder"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       android:layout_marginTop="50dp"></ImageView>
+
+                    <TextView
+                        android:id="@+id/folder_more_folderName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{folder.folderName}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="FOLDER"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="20dp"></TextView>
+
+                    <ImageView
+                        android:id="@+id/folder_more_edit"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_edit"
+                     app:layout_constraintEnd_toStartOf="@id/folder_more_delete"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:scaleType="centerCrop"></ImageView>
+                    <ImageView
+                        android:id="@+id/folder_more_delete"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_delete"
+                        app:layout_constraintEnd_toEndOf="parent"
+                      android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginEnd="10dp"></ImageView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/BottomNavHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottomhome"
+            app:itemRippleColor="#212121"
+            app:layout_constraintBottom_toBottomOf="parent"></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/folderNameLayout"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+android:visibility="gone"
+            android:backgroundTint="@color/design_default_color_surface"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/folderlockLayput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="15dp"
+                android:padding="7dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="15dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/FolderText"
+                        style="@style/TextAppearance.MaterialComponents.Headline4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="Enter Folder Name"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></com.google.android.material.textview.MaterialTextView>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/FolderInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        app:errorEnabled="true"
+                        android:backgroundTint="#212121"
+                        app:startIconDrawable="@drawable/ic_folder"
+                        app:layout_constraintTop_toBottomOf="@id/FolderText">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/folderName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/folderNameButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="OK"
+                        android:textColor="#FFD52E"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginRight="20dp"
+                        app:layout_constraintTop_toBottomOf="@id/FolderInputLayout"></com.google.android.material.button.MaterialButton>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/folderNameButtonCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cancel"
+                        android:textColor="#FFD52E"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_marginStart="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/FolderInputLayout"></com.google.android.material.button.MaterialButton>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

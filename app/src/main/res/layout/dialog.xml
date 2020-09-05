@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:layout_marginTop="40dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sheet_lock"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginStart="70dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_lock"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="25dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_lock_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+            <TextView
+                android:id="@+id/lockText"
+                style="@style/AppTheme.H5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Lock"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_lock"></TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sheet_delete"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@id/sheet_lock"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardUseCompatPadding="true"
+
+        android:layout_marginStart="30dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_delete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_delete"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="25dp"></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                style="@style/AppTheme.H5"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/image_delete"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="5dp"></TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sheet_send"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        app:layout_constraintTop_toBottomOf="@id/sheet_delete"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_send"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_share"
+                android:scaleType="centerCrop"
+                ></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send a Copy"
+                style="@style/AppTheme.H1"
+                android:textSize="20sp"
+                android:layout_marginStart="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                android:layout_marginTop="5dp"></TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pinBoarder"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:padding="7dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+    android:visibility="gone"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/setPasswordText"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Set Password"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pinInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#212121"
+                android:hint="Password"
+                app:endIconMode="password_toggle"
+                app:layout_constraintTop_toBottomOf="@id/setPasswordText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pinTextInput"
+                    android:layout_width="match_parent"
+                    android:inputType="textPassword"
+
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pinSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:textColor="#FFD52E"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@id/pinInputLayout"></com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pinCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+
+                android:textColor="#FFD52E"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_marginStart="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pinInputLayout"></com.google.android.material.button.MaterialButton>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

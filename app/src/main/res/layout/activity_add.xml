@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="todo"
+            type="com.ankit.mvvmtodo.TodoRecord" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/rounded">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent">
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/addToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:navigationIcon="@drawable/ic_back"
+                    app:navigationContentDescription="Notes"
+                    />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/todoContentLayout"
+            android:layout_height="70dp"
+            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/appBar"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:boxStrokeColor="#ffffff"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/todoContentTitleInput"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="@{todo.title}"
+                android:inputType="textMultiLine|textCapWords|textAutoCorrect|textAutoComplete"
+                android:hint="Title"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/todoContentBodyLayout"
+            android:layout_height="270dp"
+            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_marginTop="30dp"
+            app:boxStrokeColor="#ffffff"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/todoContentLayout"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/todoContentBodyInput"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:inputType="textMultiLine|textAutoCorrect|textAutoComplete"
+                android:text="@{todo.content}"
+                android:hint="Body"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>
+

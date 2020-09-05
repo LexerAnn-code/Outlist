@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.H1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/manjari_bold</item>
+    </style>
+    <style name="AppTheme.H2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/manjari_regular</item>
+
+    </style>
+<style name="AppBar" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="android:theme">@style/Theme.MaterialComponents.Light.NoActionBar</item>
+
+</style>
+    <style name="AppButtons" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">?attr/colorSecondary</item>
+    </style>
+    <style name="AppTheme.H3" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/manjari_bold</item>
+    </style>
+    <style name="AppTheme.H4" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/manjari_bold</item>
+    </style>
+    <style name="AppTheme.H5" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/manjari_bold</item>
+    </style>
+    <style name="AppTheme.L1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/slabo</item>
+    </style>
+
+</resources>

@@ -6,13 +6,13 @@
 
         <variable
             name="viewModelTodo"
-            type="com.ankit.mvvmtodo.TodoViewModel"/>
+            type="com.ankit.mvvmtodo.viewmodel.TodoViewModel"/>
         <variable
             name="adapters"
-            type="com.ankit.mvvmtodo.RecyclerAdapterTodo"/>
+            type="com.ankit.mvvmtodo.recyclerpackage.RecyclerAdapterTodo"/>
         <variable
             name="folder"
-            type="com.ankit.mvvmtodo.TodoFolder" />
+            type="com.ankit.mvvmtodo.model.TodoFolder" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/addTodoLayout"

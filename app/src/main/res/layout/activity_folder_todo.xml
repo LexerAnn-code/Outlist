@@ -8,14 +8,21 @@
 
         <variable
             name="folderAdapter"
-            type="com.ankit.mvvmtodo.FolderRecyclerView" />
+            type="com.ankit.mvvmtodo.recyclerpackage.FolderRecyclerView" />
+
+        <variable
+            name="folderAdapterSearch"
+            type="com.ankit.mvvmtodo.recyclerpackage.SearchRecyclerAdapterTodo" />
+
+
 
         <variable
             name="folderViewModel"
-            type="com.ankit.mvvmtodo.TodoViewModel" />
+            type="com.ankit.mvvmtodo.viewmodel.TodoViewModel" />
         <variable
             name="folder"
-            type="com.ankit.mvvmtodo.TodoFolder" />
+            type="com.ankit.mvvmtodo.model.TodoFolder" />
+
 
 
     </data>
@@ -25,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
-        tools:context=".FolderTodoActivity">
+        tools:context=".ui.FolderTodoActivity">
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/folder_appBar_home"
             android:layout_width="match_parent"
@@ -53,7 +60,7 @@
 
 
 
-        <androidx.recyclerview.widget.RecyclerView
+               <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/folder_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -65,6 +72,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/folder_appBar_home"
             app:setAdapter="@{folderAdapter}"></androidx.recyclerview.widget.RecyclerView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/folder_recyclerSearch"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/BottomNavHome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/folder_appBar_home"
+            app:setAdapter="@{folderAdapterSearch}"></androidx.recyclerview.widget.RecyclerView>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/folderNameMoreOptions"

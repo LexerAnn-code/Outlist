@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.ankit.mvvmtodo.UI.AddTodoNotes"
+        android:name="com.ankit.mvvmtodo.ui.AddTodoNotes"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ankit.mvvmtodo.UI.HomeFragment"
+        android:name="com.ankit.mvvmtodo.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action

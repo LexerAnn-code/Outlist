@@ -6,7 +6,7 @@
 <data>
 <variable
   name="todo"
-    type="com.ankit.mvvmtodo.TodoRecord"></variable>
+    type="com.ankit.mvvmtodo.model.TodoRecord"></variable>
 </data>
 
     <RelativeLayout
@@ -18,17 +18,17 @@
             android:id="@+id/todoT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:text="@{todo.title}"
             android:textSize="20sp"
            android:textStyle="bold"
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
+            android:layout_alignStart="@id/lockTodo"
             tools:text="TITLE"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
 
 
 
@@ -66,7 +66,7 @@ style="@style/AppTheme.H2"
             style="@style/AppTheme.H2"
           android:layout_alignParentStart="true"
             android:layout_below="@id/todoT"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
 
             ></TextView>
 
@@ -75,11 +75,12 @@ style="@style/AppTheme.H2"
             android:id="@+id/lockTodo"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="30dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
+           android:visibility="gone"
             android:src="@drawable/ic_lock_24"></ImageView>
     </RelativeLayout>
 </layout>

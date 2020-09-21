@@ -1,11 +1,9 @@
-
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-   >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
       <variable
-          name="todoFolderVariable"
+          name="todoSearch"
          type="com.ankit.mvvmtodo.model.TodoFolder"></variable>
 
 </data>
@@ -46,7 +44,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="70dp"
                 android:gravity="center"
-                android:text="@{todoFolderVariable.folderName}"
+                android:text="@{todoSearch.folderName}"
                 android:textSize="20sp"
 
                 android:layout_gravity="center_vertical"

@@ -13,4 +13,6 @@
     <string name="errorEmptyFolder">Empty Folder Name</string>
     <string name="errorRename">Empty Rename</string>
     <string name="errorIncorrect">Wrong Password</string>
+    <string name="Folders">Folders</string>
+    <string name="Notes">Notes</string>
 </resources>

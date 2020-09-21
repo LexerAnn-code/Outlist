@@ -58,7 +58,7 @@ sheet_delete_dialog.setOnClickListener {
 
 
             if(folderTextInput_dialog.text.isNullOrEmpty()){
-                FolderInputLayout_dialog.error=getString(R.string.errorRename)
+                FolderInputLayout_dialog.error=getString(R.string.emptyPassword)
                 folderTextInput_dialog.addTextChangedListener(object :TextWatcher{
                     override fun afterTextChanged(p0: Editable?) {
 

@@ -3,6 +3,8 @@ package com.ankit.mvvmtodo.util
 import android.content.Intent
 import com.ankit.mvvmtodo.model.TodoRecord
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,8 @@ import com.ankit.mvvmtodo.R
 import com.ankit.mvvmtodo.viewmodel.TodoViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog.*
+import kotlinx.android.synthetic.main.dialog.lockText
+import kotlinx.android.synthetic.main.dialog_v2.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.ArrayList
 
@@ -40,8 +44,11 @@ private var fragmentView:View?=null
         }
 
         sheet_lock.setOnClickListener {
+
+
             if(pass.password!=null){
                 pinBoarder.visibility=View.GONE
+
                 val message= TodoRecord(
                         pass.todoId,
                         pass.userCreatedFolderId,
@@ -50,12 +57,14 @@ private var fragmentView:View?=null
                         pass.date,
                         password = null
                 )
+
                 postViewM.updateTodoWithPin(message)
                 requireActivity().onBackPressed()
             }
             else
             {
                 pinBoarder.visibility=View.VISIBLE
+
             }
 
             debugger("New Data ${pass?.title}")
@@ -90,18 +99,43 @@ action=Intent.ACTION_SEND
             debugger("$dataToSend")
             startActivity(sendIntent)
         }
-        pinSave.setOnClickListener {
-            pinBoarder.visibility=View.GONE
-               val message= TodoRecord(
-                       pass.todoId,
-                       pass.userCreatedFolderId,
-                       pass.title,
-                       pass.content,
-                       pass.date,
-                       password = pinTextInput.text.toString()
-               )
-               postViewM.updateTodoWithPin(message)
 
+        pinSave.setOnClickListener {
+
+            if (pinTextInput.text.toString().isNullOrEmpty()) {
+
+                pinInputLayout.error = getString(R.string.emptyPassword)
+                pinTextInput.addTextChangedListener(object : TextWatcher {
+                    override fun afterTextChanged(p0: Editable?) {
+
+                    }
+
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        if (p0.isNullOrEmpty()) {
+
+                        } else {
+                            pinInputLayout.error = null
+                        }
+                    }
+
+                })
+            } else {
+                val message = TodoRecord(
+                        pass.todoId,
+                        pass.userCreatedFolderId,
+                        pass.title,
+                        pass.content,
+                        pass.date,
+                        password = pinTextInput.text.toString()
+                )
+                postViewM.updateTodoWithPin(message)
+                pinBoarder.visibility = View.GONE
+
+            }
         }
 //        pinCancel.setOnClickListener{
 //            pinBoarder.visibility=View.GONE

@@ -1,6 +1,7 @@
 package com.ankit.mvvmtodo.recyclerpackage
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.ankit.mvvmtodo.databinding.FoldersearchBinding
 import com.ankit.mvvmtodo.databinding.ItemViewBinding
 import com.ankit.mvvmtodo.model.TodoFolder
+import com.ankit.mvvmtodo.ui.EditTodoActivity
+import com.ankit.mvvmtodo.ui.HomeActivity
 
 class SearchRecyclerAdapterTodo(private val host: Activity):ListAdapter<TodoFolder, SearchFolderViewHolder>(
         DIFF_UTIL
@@ -29,26 +32,19 @@ companion object{
     override fun onBindViewHolder(holderViewHolder: SearchFolderViewHolder, position: Int) {
 val getCurrentItem=getItem(position)
 holderViewHolder.binding.todoSearch=getCurrentItem
-//
-//        holderViewHolder.itemView.setOnClickListener {
-//
-//            if(getCurrentItem.password==null){
-//                host.startActivity(
-//                    Intent(host, EditTodoActivity::class.java).apply {
-//                        putExtra(EditTodoActivity.EXTRA_POST,getCurrentItem)
-//                    }
-//                )
-//            }
-//            else{
-//                debugger("Locked")
-//                host.startActivity(
-//                    Intent(host, PasswordVerify::class.java).apply {
-//                        putExtra(PasswordVerify.EXTRA_POST,getCurrentItem)
-//                    }
-//
-//                )
-//            }
-//        }
+
+        holderViewHolder.itemView.setOnClickListener {
+
+
+
+                host.startActivity(
+                    Intent(host, HomeActivity::class.java).apply {
+                        putExtra(HomeActivity.EXTRA,getCurrentItem)
+                    }
+
+                )
+
+        }
         holderViewHolder.binding.executePendingBindings()
     }
 

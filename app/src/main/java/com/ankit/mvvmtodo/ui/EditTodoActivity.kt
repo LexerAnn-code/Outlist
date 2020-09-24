@@ -18,7 +18,6 @@ class EditTodoActivity : AppCompatActivity() {
     private val postViewM by viewModel<TodoViewModel>()
     companion object {
         const val EXTRA_POST = "extra_post"
-        const val EXTRA_POSTS = "extra_posts"
     }
     private lateinit var pinTodo: TodoRecord
 

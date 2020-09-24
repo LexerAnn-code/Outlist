@@ -4,6 +4,8 @@ import com.ankit.mvvmtodo.model.TodoFolder
 import com.ankit.mvvmtodo.model.TodoRecord
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
+import androidx.paging.PagingSource
 import com.ankit.mvvmtodo.database.TodoDao
 import com.ankit.mvvmtodo.util.debugger
 import kotlinx.coroutines.Dispatchers
@@ -16,10 +18,6 @@ class RepositoryTodo(private val todoDao: TodoDao) {
 
 
 
-
-fun getAllQueryTodo(tid:Int):LiveData<MutableList<TodoRecord>>{
-      return  todoDao.getRecords(tid)
-}
 
 
 suspend  fun saveTodo(todoRecord: TodoRecord){

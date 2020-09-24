@@ -1,5 +1,7 @@
 package com.ankit.mvvmtodo.util
 
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 

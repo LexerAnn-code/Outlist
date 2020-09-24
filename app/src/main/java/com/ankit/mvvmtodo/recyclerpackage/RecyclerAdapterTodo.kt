@@ -12,14 +12,16 @@ import com.ankit.mvvmtodo.util.debugger
 import android.view.View
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import com.ankit.mvvmtodo.model.TodoRecord
 import com.ankit.mvvmtodo.ui.PasswordVerify
 import com.ankit.mvvmtodo.databinding.ItemViewBinding
 import kotlinx.android.synthetic.main.item_view.view.*
 
-class RecyclerAdapterTodo(private val host: Activity):ListAdapter<TodoRecord, TodoViewHolder>(
+class RecyclerAdapterTodo(private val host: Activity): PagingDataAdapter<TodoRecord, TodoViewHolder>(
         DIFF_UTIL
-),Filterable{
+){
 
 companion object{
     private val DIFF_UTIL: DiffUtil.ItemCallback<TodoRecord> =
@@ -41,12 +43,12 @@ return TodoViewHolder(binding)
     override fun onBindViewHolder(holderViewHolder: TodoViewHolder, position: Int) {
 val getCurrentItem=getItem(position)
 holderViewHolder.binding.todo=getCurrentItem
-        if(getCurrentItem.password!=null){
+        if(getCurrentItem?.password !=null){
             holderViewHolder.itemView.lockTodo.visibility=View.VISIBLE
         }
         holderViewHolder.itemView.setOnClickListener {
 
-            if(getCurrentItem.password==null){
+            if(getCurrentItem?.password==null){
                 host.startActivity(
                     Intent(host, EditTodoActivity::class.java).apply {
                         putExtra(EditTodoActivity.EXTRA_POST,getCurrentItem)
@@ -66,8 +68,5 @@ holderViewHolder.binding.todo=getCurrentItem
         holderViewHolder.binding.executePendingBindings()
     }
 
-    override fun getFilter(): Filter {
-        TODO("Not yet implemented")
-    }
 
 }

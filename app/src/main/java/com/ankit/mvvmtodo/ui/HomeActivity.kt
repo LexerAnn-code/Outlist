@@ -12,13 +12,20 @@ import android.view.MenuItem
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.ankit.mvvmtodo.R
 import com.ankit.mvvmtodo.viewmodel.TodoViewModel
 import com.ankit.mvvmtodo.databinding.ActivityHomeBinding
+import com.ankit.mvvmtodo.util.LoadingState
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -39,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
         binding.adapters = adapterTodo
         //Setting toolbar
         setSupportActionBar(topAppbar)
+
 //handleIntent(intent)
         //Handles back press action
         topAppbar.setNavigationOnClickListener {
@@ -55,12 +63,24 @@ class HomeActivity : AppCompatActivity() {
                     putExtra(AddActivity.EXTRA, passData)
                 })
             }
+            homeViewModel.uuid=passData.folderId
             //Submits the Live-data to recyclerView
-            homeViewModel.passingFolderID(passData.folderId!!).observe(this, Observer {
-                debugger("All Query->>${it}")
-                adapterTodo.submitList(it)
-            })
+            lifecycleScope.launch {
+                homeViewModel.flow.collect {
+                    debugger("DATA->>$it")
+                    adapterTodo.submitData(it)
+                }
+            }
+
         }
+        lifecycleScope.launch{
+            adapterTodo.loadStateFlow.collectLatest {loadStates ->
+                progressBar.isVisible=loadStates.refresh is LoadState.Loading
+                progressBarLoadMore.isVisible=loadStates.append is LoadState.Loading
+
+            }
+        }
+
 
 
         //Creates a bottom line seen in the itemView of the recyclerView
@@ -91,7 +111,7 @@ class HomeActivity : AppCompatActivity() {
                     override fun onQueryTextChange(p0: String?): Boolean {
                         homeViewModel.searchNotes("%$p0%").observe(this@HomeActivity, Observer {
                             debugger("SSSSSSSSSSSSS->>$it")
-                            adapterTodo.submitList(it)
+                                    //  adapterTodo.submitList(it)
 
                         })
                         return true

@@ -19,6 +19,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -47,6 +51,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
+    def paging_version = "2.1.2"
+
+    implementation "androidx.paging:paging-runtime-ktx:3.0.0-alpha06" // For Kotlin use paging-runtime-ktx
+
     def nav_versions = "2.1.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_versions"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_versions"
@@ -54,12 +62,14 @@ dependencies {
     // For ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 // Room
-    implementation 'androidx.room:room-runtime:2.0.0'
-    kapt 'androidx.room:room-compiler:2.0.0'
+    implementation "androidx.room:room-runtime:2.3.0-alpha02"
+    implementation "androidx.room:room-ktx:2.3.0-alpha02"
+    kapt "androidx.room:room-compiler:2.3.0-alpha02"
 // Koin
     // com.app.dexter.Koin
     implementation "org.koin:koin-android:2.0.1"

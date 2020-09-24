@@ -2,6 +2,8 @@ package com.ankit.mvvmtodo.database
 
 import com.ankit.mvvmtodo.model.TodoFolder
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.ankit.mvvmtodo.model.TodoRecord
 
@@ -31,10 +33,14 @@ suspend fun savePinTodoRecord(vararg todoRecord: TodoRecord)
     @Query("SELECT * FROM TodoFolder ORDER BY folderId DESC")
     fun getFolders():LiveData<MutableList<TodoFolder>>
 
+//
+//    @Query("SELECT * FROM TodoRecord  WHERE userCreatedFolderId LIKE :folderUID ORDER BY todoId DESC")
+//
+//    fun getRecords(folderUID: Int?):LiveData<MutableList<TodoRecord>>
+@Query("SELECT * FROM TodoRecord  WHERE userCreatedFolderId LIKE :folderUID ORDER BY todoId DESC")
 
-    @Query("SELECT * FROM TodoRecord  WHERE userCreatedFolderId LIKE :folderUID ORDER BY todoId DESC")
+fun getRecords(folderUID: Int?):PagingSource<Int,TodoRecord>
 
-    fun getRecords(folderUID: Int?):LiveData<MutableList<TodoRecord>>
 
 
     @Query("SELECT * FROM TodoRecord WHERE title LIKE :search")

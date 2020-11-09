@@ -18,10 +18,12 @@ A note taking application that stores data locally using Room database
 *   [Navigation](https://developer.android.com/guide/navigation)
 *   [Room](https://developer.android.com/topic/libraries/architecture/room) for data persistence
 *   [Retrofit 2](https://github.com/square/retrofit) and [OkHttp](https://github.com/square/okhttp) for networking
-*   [GSON](https://github.com/google/gson for parsing JSON
+*   [GSON](https://github.com/google/gson) for parsing JSON
 *   [Glide](https://github.com/bumptech/glide) for image loading
 *   [Koin](https://insert-koin.io), for dependency injection  
 *   [Mockito](https://site.mockito.org/), for mocking when testing
 
 ## Installing the App
 *   Clone this repository
+git https://github.com/LexerAnn-code/Outlist.git
+```

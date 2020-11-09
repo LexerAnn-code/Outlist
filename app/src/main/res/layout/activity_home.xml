@@ -10,6 +10,10 @@
         <variable
             name="adapters"
             type="com.ankit.mvvmtodo.recyclerpackage.RecyclerAdapterTodo"/>
+
+        <variable
+            name="adaptersSearch"
+            type="com.ankit.mvvmtodo.recyclerpackage.SearchNotesRecyclerprivate"/>
         <variable
             name="folder"
             type="com.ankit.mvvmtodo.model.TodoFolder" />
@@ -43,16 +47,30 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerLeslie"
+            android:id="@+id/recycler_notes"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="bottom"
             android:background="#FFFFFF"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/appBar_home"
             app:layout_constraintBottom_toBottomOf="parent"
             app:setAdapter="@{adapters}"
-            ></androidx.recyclerview.widget.RecyclerView>
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:background="#FFFFFF"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/appBar_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:setAdapter="@{adaptersSearch}"
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_note_fab"
@@ -63,8 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="20dp"
             android:backgroundTint="#F3DA81"
-            app:srcCompat="@drawable/ic_add"></com.google.android.material.floatingactionbutton.FloatingActionButton>
-
+            app:srcCompat="@drawable/ic_add"/>
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -75,10 +92,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone"
             android:indeterminate="true"
-            ></ProgressBar>
-
+            app:setupVisibility="@{viewModelTodo.loadingState}"/>
         <ProgressBar
-            android:id="@+id/progressBarLoadMore"
+            android:id="@+id/progressBarMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -87,7 +103,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone"
             android:indeterminate="true"
- ></ProgressBar>
+            app:setupVisibility="@{viewModelTodo.loadingState}"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

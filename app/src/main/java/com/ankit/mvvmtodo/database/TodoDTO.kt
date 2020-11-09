@@ -16,6 +16,9 @@ interface TodoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
   suspend  fun saveTodoInFolder(todoFolder: TodoFolder)
+    @Query("SELECT * FROM TodoRecord WHERE userCreatedFolderId LIKE :folderUID ORDER BY todoId DESC")
+    fun getRecordsAll(folderUID: Int?):LiveData<MutableList<TodoRecord>>
+
 
 @Update
 suspend fun savePinTodoRecord(vararg todoRecord: TodoRecord)
@@ -38,17 +41,16 @@ suspend fun savePinTodoRecord(vararg todoRecord: TodoRecord)
 //
 //    fun getRecords(folderUID: Int?):LiveData<MutableList<TodoRecord>>
 @Query("SELECT * FROM TodoRecord  WHERE userCreatedFolderId LIKE :folderUID ORDER BY todoId DESC")
-
-fun getRecords(folderUID: Int?):PagingSource<Int,TodoRecord>
-
+fun getRecords(folderUID: Int?):LiveData<MutableList<TodoRecord>>
 
 
-    @Query("SELECT * FROM TodoRecord WHERE title LIKE :search")
-    fun searchTodo(search:String?):MutableList<TodoRecord>
+
+//    @Query("SELECT * FROM TodoRecord WHERE title LIKE :search")
+//    fun searchTodo(search:String?):LiveData<MutableList<TodoRecord>>
 
 
-    @Query("SELECT * FROM TodoRecord WHERE title LIKE :search AND userCreatedFolderId=:uid")
-    fun searchTodoOne(search:String?,uid:Int?):LiveData<MutableList<TodoRecord>>
+    @Query("SELECT * FROM TodoRecord WHERE  userCreatedFolderId=:uid  AND title LIKE :search")
+    fun  searchTodoOne(uid:Int?,search:String?):LiveData<MutableList<TodoRecord>>
 
     @Query("SELECT * FROM TodoFolder WHERE folderName LIKE:folderName ORDER BY folderId DESC")
     fun searchFolder(folderName:String?):LiveData<MutableList<TodoFolder>>

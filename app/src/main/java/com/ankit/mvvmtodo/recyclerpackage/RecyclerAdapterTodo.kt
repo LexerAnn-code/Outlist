@@ -12,14 +12,14 @@ import com.ankit.mvvmtodo.util.debugger
 import android.view.View
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.paging.PagedListAdapter
+
 import androidx.paging.PagingDataAdapter
 import com.ankit.mvvmtodo.model.TodoRecord
 import com.ankit.mvvmtodo.ui.PasswordVerify
 import com.ankit.mvvmtodo.databinding.ItemViewBinding
 import kotlinx.android.synthetic.main.item_view.view.*
 
-class RecyclerAdapterTodo(private val host: Activity): PagingDataAdapter<TodoRecord, TodoViewHolder>(
+class RecyclerAdapterTodo(private val host: Activity): ListAdapter<TodoRecord, TodoViewHolder>(
         DIFF_UTIL
 ){
 

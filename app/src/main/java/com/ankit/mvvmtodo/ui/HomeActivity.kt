@@ -9,6 +9,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.ankit.mvvmtodo.R
 import com.ankit.mvvmtodo.viewmodel.TodoViewModel
 import com.ankit.mvvmtodo.databinding.ActivityHomeBinding
+import com.ankit.mvvmtodo.recyclerpackage.SearchNotesRecyclerprivate
 import com.ankit.mvvmtodo.util.LoadingState
+import kotlinx.android.synthetic.main.activity_folder_todo.*
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -36,14 +39,18 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var postAdapter: RecyclerAdapterTodo
     private lateinit var binding: ActivityHomeBinding
     private lateinit var adapterTodo: RecyclerAdapterTodo
+    private lateinit var adapterTodoSearch: SearchNotesRecyclerprivate
     val homeViewModel by viewModel<TodoViewModel>()
+    private lateinit var pass:TodoFolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         adapterTodo =
                 RecyclerAdapterTodo(this)
+        adapterTodoSearch= SearchNotesRecyclerprivate(this)
         binding.adapters = adapterTodo
+        binding.adaptersSearch=adapterTodoSearch
         //Setting toolbar
         setSupportActionBar(topAppbar)
 
@@ -55,36 +62,36 @@ class HomeActivity : AppCompatActivity() {
         binding.viewModelTodo=homeViewModel
 
         //Checks and get the data passed from Folder to HomeActivity
-        val passData = intent.getParcelableExtra<TodoFolder>(EXTRA)
+        pass = intent.getParcelableExtra(EXTRA)
         if (intent.hasExtra(EXTRA)) {
-            title = passData.folderName
+            title = pass.folderName
             add_note_fab.setOnClickListener {
                 startActivity(Intent(this, AddActivity::class.java).apply {
-                    putExtra(AddActivity.EXTRA, passData)
+                    putExtra(AddActivity.EXTRA, pass)
                 })
             }
-            homeViewModel.uuid=passData.folderId
+
             //Submits the Live-data to recyclerView
-            lifecycleScope.launch {
-                homeViewModel.flow.collect {
-                    debugger("DATA->>$it")
-                    adapterTodo.submitData(it)
-                }
-            }
+
 
         }
-        lifecycleScope.launch{
-            adapterTodo.loadStateFlow.collectLatest {loadStates ->
-                progressBar.isVisible=loadStates.refresh is LoadState.Loading
-                progressBarLoadMore.isVisible=loadStates.append is LoadState.Loading
 
-            }
-        }
+        homeViewModel.allTodoInFolder(pass.folderId).observe(this, Observer {
+            adapterTodo.submitList(it)
+        })
+//        lifecycleScope.launch{
+//            adapterTodo.loadStateFlow.collectLatest {loadStates ->
+//                progressBar.isVisible=loadStates.refresh is LoadState.Loading
+//                progressBarMore.isVisible=loadStates.append is LoadState.Loading
+//
+//
+//            }
+//        }
 
 
 
         //Creates a bottom line seen in the itemView of the recyclerView
-        RecyclerLeslie.addItemDecoration(
+        recycler_notes.addItemDecoration(
             DividerItemDecoration(
                 this,
                 DividerItemDecoration.VERTICAL
@@ -109,11 +116,27 @@ class HomeActivity : AppCompatActivity() {
                     }
 
                     override fun onQueryTextChange(p0: String?): Boolean {
-                        homeViewModel.searchNotes("%$p0%").observe(this@HomeActivity, Observer {
-                            debugger("SSSSSSSSSSSSS->>$it")
-                                    //  adapterTodo.submitList(it)
 
-                        })
+                        if (p0.toString().isEmpty()) {
+                            debugger("Null")
+                            recycler_notes.visibility = View.VISIBLE
+                            recycler_search.visibility= View.GONE
+                        }
+                        else {
+                            recycler_notes.visibility = View.GONE
+                            recycler_search.visibility= View.VISIBLE
+
+                            pass.folderId?.let {
+                                homeViewModel.searchNotes("%$p0%", pass.folderId!!).observe(this@HomeActivity, Observer {
+                                    debugger("pol${pass.folderId}")
+                                    debugger("SSSSSSSSSSSSS->>$it")
+
+                                    adapterTodoSearch.submitList(it)
+
+
+                                })
+                            }
+                        }
                         return true
                     }
 

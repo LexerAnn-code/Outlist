@@ -10,8 +10,10 @@ import com.ankit.mvvmtodo.database.TodoDao
 import com.ankit.mvvmtodo.model.TodoFolder
 import com.ankit.mvvmtodo.model.TodoRecord
 import com.ankit.mvvmtodo.ui.RepositoryTodo
+
 import com.ankit.mvvmtodo.util.LoadingState
 import com.ankit.mvvmtodo.util.debugger
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 class TodoViewModel(private val todoRepository: RepositoryTodo,private val dao: TodoDao):ViewModel() {
     var uuid:Int?=null
@@ -20,12 +22,23 @@ class TodoViewModel(private val todoRepository: RepositoryTodo,private val dao: 
 
 
 
-        val flow = Pager(
-                PagingConfig(pageSize =50  ,enablePlaceholders = false)) {
-         dao.getRecords(uuid)
-        }.flow.cachedIn(viewModelScope)
 
 
+//val flow:Flow<PagingData<TodoRecord>> = Pager(
+//PagingConfig(pageSize = 2)){
+//
+//    DataSource(dao,uuid!!)
+//}.flow.cachedIn(viewModelScope)
+//
+
+//        val flow = Pager(
+//                PagingConfig(pageSize =4,maxSize = 40)) {
+//         dao.getRecords(uuid)
+//        }.flow.cachedIn(viewModelScope)
+//
+//fun allList():LiveData<MutableList<TodoRecord>>{
+//  _data.postValue( dao.getRecords(uuid))
+//}
 //    fun passingFolderID(uid: Int):LiveData<Paged<TodoRecord>> {
 //       todoRepository.fid = uid
 //        debugger("Passed ID->${todoRepository.fid}")
@@ -90,13 +103,18 @@ class TodoViewModel(private val todoRepository: RepositoryTodo,private val dao: 
 
 
 
-    fun searchNotes(input: String?):LiveData<MutableList<TodoRecord>> {
-        debugger("SEARCH-?>>>$input")
-        return     todoRepository.searchNotesRepo(input)
+    fun searchNotes(input: String?,uid:Int):LiveData<MutableList<TodoRecord>> {
+        debugger("SEARCH-?>>>$uid")
+        return     todoRepository.searchNotesRepo(input,uid)
     }
     fun searchFolders(input: String?):LiveData<MutableList<TodoFolder>>{
         return  todoRepository.searchFolderRepo(input)
     }
+    fun allTodoInFolder(uuid:Int?):LiveData<MutableList<TodoRecord>>{
+  return dao.getRecordsAll(uuid)
+
+    }
+
 
 
 }

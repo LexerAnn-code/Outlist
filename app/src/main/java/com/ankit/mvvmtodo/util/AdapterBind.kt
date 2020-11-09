@@ -12,3 +12,14 @@ recyclerView.adapter=adapter
 fun recyclerView2(recyclerView: RecyclerView,adapter: RecyclerView.Adapter<*>){
     recyclerView.adapter=adapter
 }
+@BindingAdapter(value = ["setupVisibility"])
+fun ProgressBar.progressVisibility(loadingState: LoadingState?){
+    loadingState?.let {
+        isVisible = when(it.status){
+            LoadingState.Status.RUNNING -> true
+            LoadingState.Status.SUCCESS -> false
+            LoadingState.Status.FAILED->false
+            else -> false
+        }
+    }
+}

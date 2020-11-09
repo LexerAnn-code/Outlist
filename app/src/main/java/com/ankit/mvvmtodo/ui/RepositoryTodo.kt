@@ -4,21 +4,29 @@ import com.ankit.mvvmtodo.model.TodoFolder
 import com.ankit.mvvmtodo.model.TodoRecord
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.DataSource
-import androidx.paging.PagingSource
+import androidx.paging.*
 import com.ankit.mvvmtodo.database.TodoDao
+
 import com.ankit.mvvmtodo.util.debugger
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class RepositoryTodo(private val todoDao: TodoDao) {
-    var fid:Int?=null
+
 
     private val allTodoFolder= todoDao.getFolders()
 
 
-
-
+//fun getPagingData(dao: TodoDao):Flow<PagingData<TodoRecord>>{
+//
+//    return Pager(
+//            config = PagingConfig(
+//                    pageSize = 50,
+//                    enablePlaceholders = false
+//            ),pagingSourceFactory = {DataSource(dao,fid!!)}
+//    ).flow
+//}
 
 suspend  fun saveTodo(todoRecord: TodoRecord){
       withContext(Dispatchers.IO){
@@ -65,9 +73,10 @@ suspend  fun saveTodo(todoRecord: TodoRecord){
 
 
 
-    fun searchNotesRepo(search: String?):LiveData<MutableList<TodoRecord>> {
+    fun     searchNotesRepo(search: String?,uid:Int):LiveData<MutableList<TodoRecord>> {
         debugger("SEARCH TWO->>$search")
-        return    todoDao.searchTodoOne(search,fid)
+        debugger("UID->>$uid")
+        return    todoDao.searchTodoOne(uid = uid,search = search)
     }
     fun searchFolderRepo(searchFolder: String?):LiveData<MutableList<TodoFolder>> {
                 return  todoDao.searchFolder(searchFolder)

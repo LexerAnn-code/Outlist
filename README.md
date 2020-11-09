@@ -1,9 +1,9 @@
 # Outlist
-A note taking application that stores data locally using Room database
+A note taking application that stores data locally using Room database.
 
 ## Project Specs
 *   Notes are displayed in a list format in an ascending order.
-*   Users can create, update and delete a folder containing notes
+*   Users can create, update and delete a folder containing notes.
 *   Notes can be protected by creating password.
 *   The user can search for notes based on the titles.
 *   Users can share notes to other apps like Whatsapp.
@@ -16,12 +16,12 @@ A note taking application that stores data locally using Room database
 ## Core Libraries
 *   [DataBinding](https://developer.android.com/topic/libraries/data-binding/)
 *   [Navigation](https://developer.android.com/guide/navigation)
-*   [Room](https://developer.android.com/topic/libraries/architecture/room) for data persistence
-*   [Retrofit 2](https://github.com/square/retrofit) and [OkHttp](https://github.com/square/okhttp) for networking
-*   [GSON](https://github.com/google/gson) for parsing JSON
-*   [Glide](https://github.com/bumptech/glide) for image loading
-*   [Koin](https://insert-koin.io), for dependency injection  
-*   [Mockito](https://site.mockito.org/), for mocking when testing
+*   [Room](https://developer.android.com/topic/libraries/architecture/room) for data persistence.
+*   [Retrofit 2](https://github.com/square/retrofit) and [OkHttp](https://github.com/square/okhttp) for networking.
+*   [GSON](https://github.com/google/gson) for parsing JSON.
+*   [Glide](https://github.com/bumptech/glide) for image loading.
+*   [Koin](https://insert-koin.io), for dependency injection.  
+*   [Mockito](https://site.mockito.org/), for mocking when testing.
 
 ## Installing the App
 *   Clone this repository

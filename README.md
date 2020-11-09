@@ -27,3 +27,8 @@ A note taking application that stores data locally using Room database
 *   Clone this repository
 git https://github.com/LexerAnn-code/Outlist.git
 ```
+
+
+
+## Screenshots
+<img src="/screenshots/outli.png" width="300"/> <img src="/screenshots/Screenshot (131).png" width="300"/> <img src="/screenshots/Screenshot (132).png" width="300"/> <img src="/screenshots/Screenshot (133).png" width="300"/> 
